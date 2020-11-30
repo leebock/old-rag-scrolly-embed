@@ -84,13 +84,13 @@ a, button {
     
 }
 
-div#panorama {
+div#view {
   position: fixed;
   z-index: 100;
-  top: 60px;
+  top: 0px;
   left: 0px;
   width: 100%;
-  height: calc(100-60px);
+  height: 100%;
 }
 
 section#intro, section#outro {
@@ -103,6 +103,7 @@ section#intro, section#outro {
 }
 
 section#action {
+  
   width: 100vw;
   position: relative;
   display: flex;
@@ -125,10 +126,10 @@ section#action {
     color: white;
     right: 30px;
     &:nth-of-type(1) {
-      top: calc(5% - 32px);
+      top: calc(33% - 32px);
     }
     &:nth-of-type(2) {
-      top: calc(40% - 32px);
+      top: calc(80% - 32px);
     }
     &:nth-of-type(3) {
       top: calc(70% - 32px);
@@ -137,27 +138,28 @@ section#action {
 
   #caption1 {
     &:after {
-      content: "Rotate right!"
+      content: "Initial ascent"
     }
     .reverse & {
       &:after {
-        content: "Rotate left!"
+        content: "Initial ascent"
       }
     }
   }
 
   #caption2 {
     &:after {
-      content: "Enhance!"
+      content: "Scramble across the top"
     }
     .reverse & {
       &:after {
-        content: "Zooming out."
+        content: "Scramble across the top"
       }
     }
   }
   
   #caption3 {
+    display: none;
     &:after {
       content: "Put on your sunglasses!"
     }
@@ -169,4 +171,3 @@ section#action {
   }
     
 }
-

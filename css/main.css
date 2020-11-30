@@ -76,13 +76,13 @@ a, button {
   }
 }
 
-div#panorama {
+div#view {
   position: fixed;
   z-index: 100;
-  top: 60px;
+  top: 0px;
   left: 0px;
   width: 100%;
-  height: calc(100-60px);
+  height: 100%;
 }
 
 section#intro, section#outro {
@@ -117,25 +117,28 @@ section#action div.caption {
   right: 30px;
 }
 section#action div.caption:nth-of-type(1) {
-  top: calc(5% - 32px);
+  top: calc(33% - 32px);
 }
 section#action div.caption:nth-of-type(2) {
-  top: calc(40% - 32px);
+  top: calc(80% - 32px);
 }
 section#action div.caption:nth-of-type(3) {
   top: calc(70% - 32px);
 }
 section#action #caption1:after {
-  content: "Rotate right!";
+  content: "Initial ascent";
 }
 .reverse section#action #caption1:after {
-  content: "Rotate left!";
+  content: "Initial ascent";
 }
 section#action #caption2:after {
-  content: "Enhance!";
+  content: "Scramble across the top";
 }
 .reverse section#action #caption2:after {
-  content: "Zooming out.";
+  content: "Scramble across the top";
+}
+section#action #caption3 {
+  display: none;
 }
 section#action #caption3:after {
   content: "Put on your sunglasses!";
