@@ -19,28 +19,68 @@ function(
 	"use strict";
 	
 	var _view;
+	var _lastScrollTop = 0; // used to track whether scroll is forward or reverse
+	
+	const ANIMATIONS = [
+		{
+			title: "opening",
+			indexFrom: -1,
+			indexTo: -1,
+			result: {
+				fov: 100,
+				heading: 220,
+				tilt: 65,
+				x: -78.29,
+                y: 38.58,
+                z: 1200 // meters
+			}
+		},
+		{
+			title: "ascending trail",
+			indexFrom: 14,
+			indexTo: 57,
+			result: {
+				heading: 209.15734359100423,
+				tilt: 65.00000697438114,
+				x: -78.2943371074331,
+				y: 38.57566293895012,
+				z: 1199.9999999990687
+			}
+		},
+		{
+			title: "scramble across top",
+			indexFrom: 101,
+			indexTo: 170,
+			result: {
+				heading: 187.94556249091443,
+				tilt: 60.09714325569671,
+				x: -78.3072192632819,
+				y: 38.558066453654284,
+				z: 1240.890418649651					
+			}
+		},
+		{
+			title: "overhead top view",
+			indexFrom: 210,
+			indexTo: 240,
+			result: {
+				heading: 194.2796972703814,
+				tilt: 19.04002376543753,
+				x: -78.30932130629128,
+				y: 38.55484893715529,
+				z: 1613.0065664835274
+			}
+		}
+	];
 
 	$(document).ready(function() {
 		
 		window.onbeforeunload = function (){window.scrollTo(0, 0);};
 		
-		var lastScrollTop = 0;
-		$(window).scroll(function(event){
-			var st = $(this).scrollTop();
-			if (st > lastScrollTop){
-				$("html body").removeClass("reverse");
-			} else {
-				$("html body").addClass("reverse");
-			}
-			lastScrollTop = st;
-		});		
+		$(window).scroll(onWindowScroll);		
 
-		var map = new Map({
-          basemap: "satellite",
-          ground: "world-elevation"
-        });
+		var map = new Map({basemap: "satellite", ground: "world-elevation"});
 		
-		// Trailheads point feature layer
 		var featureLayer = new FeatureLayer({
 		  url:
 		    "https://services.arcgis.com/nzS0F0zdNLvs7nc8/arcgis/rest/services/old_rg_sectionz/FeatureServer/0"
@@ -52,13 +92,13 @@ function(
           map: map,
           camera: {
             position: {
-              x: -78.29,
-              y: 38.58,
-              z: 1200 // meters
+              x: ANIMATIONS[0].result.x,
+              y: ANIMATIONS[0].result.y,
+              z: ANIMATIONS[0].result.z
             },
-            tilt: 65,
-			heading: 220,
-			fov: 100
+            tilt: ANIMATIONS[0].result.tilt,
+			heading: ANIMATIONS[0].result.heading,
+			fov: ANIMATIONS[0].result.fov
           }
         });
 
@@ -72,8 +112,8 @@ function(
 		// init controller
 		var controller = new ScrollMagic.Controller();
 
-		const TICK_LIMIT = 180;
-		$("section#action").css("height", "600vh");
+		const TICK_LIMIT = 240;
+		$("section#action").css("height", "800vh");
 		
 		for (var i = 1; i < TICK_LIMIT+1; i++) {
 			$("section#action").append($("<div>").addClass("tick").attr("id", "tick"+i));
@@ -98,80 +138,61 @@ function(
 		new ScrollMagic.Scene({triggerElement: "#tick150"})
 		.setPin("#caption2")
 		.addTo(controller);		
-		/*
-		new ScrollMagic.Scene({triggerElement: "#tick150", duration: "100%"})
-		.setPin("#caption3")
-		.addTo(controller);		
-		*/
-		function onEnter(event)
-		{
-			var index = $("section#action div.tick")
-						.index($(event.target.triggerElement()))+1;
-			//console.log(index);
-			if (index <= 13) {
-				// nothing
-			} else if (index > 13 && index <= 57) {
-				_view
-	              .goTo({
-	                /*tilt: 75 - (index-13),*/
-					heading: 220 - (index-13)*0.25,
-					position: {
-		              x: -78.29- (index-13)*0.0001,
-		              y: 38.58 - (index-13)*0.0001,
-		              z: 1200 // meters
-		            },
-	              })
-	              .catch(function (error) {
-	                if (error.name !== "AbortError") {
-	                  console.error(error);
-	                }
-	              });
-			} else if (index > 57 && index <= 70) {
-				if (index === 58) {
-					console.log("end scene 1:");
-					reportCamera();
-				} else {
-					// nothing
-				}
-			} else if (index > 100 && index <= 170) {
-				const DELTA_TILT = -0.45;
-				const DELTA_HEADING = -2;
-				const DELTA_X = -0.0007;
-				const DELTA_Y = -0.00087;
-				const DELTA_Z = 2.4;
-				const forward = !$("html body").hasClass("reverse");
-				_view
-	              .goTo({
-	                tilt: _view.camera.tilt + (forward ? DELTA_TILT : -DELTA_TILT),
-					heading: _view.camera.heading + (forward ? DELTA_HEADING: -DELTA_HEADING),
-					position: {
-		              x: _view.camera.position.longitude + (forward ? DELTA_X : -DELTA_X),
-		              y: _view.camera.position.latitude + (forward ? DELTA_Y : -DELTA_Y),
-		              z: _view.camera.position.z + (forward ? DELTA_Z : -DELTA_Z) 
-		            },
-	              })
-	              .catch(function (error) {
-	                if (error.name !== "AbortError") {
-	                  console.error(error);
-	                }
-	              });
-			} else if (index === 171) {
-				// nothing
-				console.log("end scene 2:");
-				reportCamera();
-			} else {
-			}
-		}
-		
-		function onLeave(event)
-		{
-		}
 		
 	});
 
 	/***************************************************************************
-	********************** EVENTS that affect selection ************************
+	********************************* EVENTS ***********************************
 	***************************************************************************/
+
+	function onEnter(event)
+	{
+		var index = $("section#action div.tick")
+					.index($(event.target.triggerElement()))+1;
+		var current = findAnimation(index);
+		if (current) {
+
+			var last = ANIMATIONS[ANIMATIONS.indexOf(current)-1];
+			var span = (current.indexTo - current.indexFrom)+1;
+			var step = (index - current.indexFrom)+1;
+
+			_view
+			  .goTo({
+				tilt: 	last.result.tilt + 
+						((current.result.tilt - last.result.tilt) / span)*step,
+				heading: last.result.heading + 
+						((current.result.heading - last.result.heading) / span)*step,
+				position: {
+					x: 	last.result.x + ((current.result.x - last.result.x) / span)*step, 
+					y: 	last.result.y + ((current.result.y - last.result.y) / span)*step, 
+					z: 	last.result.z + ((current.result.z - last.result.z) / span)*step
+				},
+			  })
+			  .catch(function (error) {
+				if (error.name !== "AbortError") {
+				  console.error(error);
+				}
+			  });
+			
+		} else {
+			// nothing
+		}
+
+	}
+			
+	function onLeave(event)
+	{
+	}
+
+	function onWindowScroll(event){
+		var st = $(event.target).scrollTop();
+		if (st > _lastScrollTop){
+			$("html body").removeClass("reverse");
+		} else {
+			$("html body").addClass("reverse");
+		}
+		_lastScrollTop = st;
+	}
 
 	/***************************************************************************
 	**************************** EVENTS (other) ********************************
@@ -180,7 +201,17 @@ function(
 	/***************************************************************************
 	******************************** FUNCTIONS *********************************
 	***************************************************************************/
-	
+
+	function findAnimation(index)
+	{
+		return $.grep(
+			ANIMATIONS, 
+			function(animation) {
+				return index >= animation.indexFrom && index <= animation.indexTo;
+			}
+		).shift();
+	}
+	/*
 	function reportCamera()
 	{
 		console.log("fov", _view.camera.fov);
@@ -190,5 +221,5 @@ function(
 		console.log("y", _view.camera.position.latitude);
 		console.log("z", _view.camera.position.z);
 	}
-
+	*/
 });
