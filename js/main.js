@@ -131,14 +131,14 @@ function(
 			.on("leave", onLeave);
 		}
 		
-		new ScrollMagic.Scene({triggerElement: "#tick60", duration: "100%"})
-		.setPin("#caption1")
+		new ScrollMagic.Scene({triggerElement: "#tick50", duration: "100%"})
+		.setPin("#caption-ascent")
 		.addTo(controller);		
 
-		new ScrollMagic.Scene({triggerElement: "#tick150"})
-		.setPin("#caption2")
+		new ScrollMagic.Scene({triggerElement: "#tick170", duration: "100%"})
+		.setPin("#caption-scramble")
 		.addTo(controller);		
-		
+
 	});
 
 	/***************************************************************************
