@@ -122,5 +122,8 @@ section#action #caption-ascent {
 section#action #caption-scramble {
   top: calc(68% - 32px);
 }
+section#action #caption-top-view {
+  top: calc(97% - 32px);
+}
 
 /*# sourceMappingURL=main.css.map */
