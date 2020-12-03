@@ -90,7 +90,6 @@ section#action {
   position: relative;
   display: flex;
   flex-direction: column;
-  background: pink;
   /*
   #caption-ridge-crossing {
     top: calc(50% - 32px);
@@ -98,11 +97,12 @@ section#action {
   */
 }
 section#action div.tick {
-  background: lightgray;
   flex: 1;
-}
-section#action div.tick:nth-of-type(even) {
-  background-color: wheat;
+  /*
+  &:nth-of-type(even) {
+    background-color: wheat;
+  }
+  */
 }
 section#action div.caption {
   position: absolute;
@@ -111,19 +111,21 @@ section#action div.caption {
   padding: 20px;
   color: white;
   right: 30px;
+}
+section#action div.caption h3, section#action div.caption p {
   width: 250px;
 }
 section#action #caption-intro {
   top: calc(3% - 32px);
 }
 section#action #caption-ascent {
-  top: calc(18% - 32px);
+  top: calc(20% - 32px);
 }
 section#action #caption-scramble {
-  top: calc(68% - 32px);
+  top: calc(64% - 32px);
 }
 section#action #caption-top-view {
-  top: calc(97% - 32px);
+  top: calc(96% - 32px);
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -99,14 +99,15 @@ section#action {
   position: relative;
   display: flex;
   flex-direction: column;
-  background: pink;
   
   div.tick {
-    background: lightgray;
+    //background: lightgray;
     flex: 1;
+    /*
     &:nth-of-type(even) {
       background-color: wheat;
     }
+    */
   }
   
   div.caption {
@@ -116,7 +117,9 @@ section#action {
     padding: 20px;
     color: white;
     right: 30px;
-    width: 250px;
+    h3, p {
+      width: 250px;
+    }
   }
 
   #caption-intro {
@@ -124,7 +127,7 @@ section#action {
   }
 
   #caption-ascent {
-    top: calc(18% - 32px);
+    top: calc(20% - 32px);
   }
   /*
   #caption-ridge-crossing {
@@ -132,11 +135,11 @@ section#action {
   }
   */
   #caption-scramble {
-    top: calc(68% - 32px);
+    top: calc(64% - 32px);
   }
   
   #caption-top-view {
-    top: calc(97% - 32px);
+    top: calc(96% - 32px);
   }
     
 }

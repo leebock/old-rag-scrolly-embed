@@ -64,11 +64,11 @@ function(
 			indexFrom: 210,
 			indexTo: 240,
 			result: {
-				heading: 194.2796972703814,
-				tilt: 19.04002376543753,
-				x: -78.30932130629128,
-				y: 38.55484893715529,
-				z: 1613.0065664835274
+				heading: 184.48378517653958,
+				tilt: 0,
+				x: -78.31142265920268,
+				y: 38.552576248047245,
+				z: 1600
 			}
 		}
 	];
@@ -112,8 +112,8 @@ function(
 		// init controller
 		var controller = new ScrollMagic.Controller();
 
-		const TICK_LIMIT = 240;
-		$("section#action").css("height", "800vh");
+		const TICK_LIMIT = 270;
+		$("section#action").css("height", "900vh");
 		
 		for (var i = 1; i < TICK_LIMIT+1; i++) {
 			$("section#action").append($("<div>").addClass("tick").attr("id", "tick"+i));
@@ -126,15 +126,15 @@ function(
 				}
 			)
 			.addTo(controller)
-			.addIndicators()
+			/*.addIndicators()*/
 			.on("enter", onEnter)
 			.on("leave", onLeave);
 		}
 		
-		new ScrollMagic.Scene({triggerElement: "#tick50", duration: "100%"})
+		new ScrollMagic.Scene({triggerElement: "#tick62", duration: "100%"})
 		.setPin("#caption-ascent")
 		.addTo(controller);		
-
+		
 		new ScrollMagic.Scene({triggerElement: "#tick170", duration: "100%"})
 		.setPin("#caption-scramble")
 		.addTo(controller);		
