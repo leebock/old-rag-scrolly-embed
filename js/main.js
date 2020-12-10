@@ -20,7 +20,8 @@ function(
 	
 	var _view;
 	var _lastScrollTop = 0; // used to track whether scroll is forward or reverse
-	
+
+	const TICK_LIMIT = 410;	
 	const ANIMATIONS = [
 		{
 			title: "Old Rag in five segments",
@@ -39,6 +40,7 @@ function(
 		{
 			title: "Trail ascent",
 			caption: "At the top of access road, you'll find the proper trail head.  There, you'll begin the second segment of the hike (see here in yellow).  The trail grows steeper than the access road and often forms switchbacks.",
+			pin: true,
 			indexFrom: 14,
 			indexTo: 57,
 			result: {
@@ -52,6 +54,7 @@ function(
 		{			
 			title: "Scramble",
 			caption: "The red segment profiles the scramble across the top.  If you have hiking poles, you're gonna want to put them away.  It's time to use your hands and arms.",
+			pin: true,
 			indexFrom: 67,
 			indexTo: 136,
 			result: {
@@ -65,6 +68,7 @@ function(
 		{
 			title: "View from overhead",
 			caption: "Here's a bird's-eye view of the top scramble.  As you can see, it goes on for a while.",
+			pin: true,
 			indexFrom: 146,
 			indexTo: 176,
 			result: {
@@ -78,6 +82,7 @@ function(
 		{
 			title: "Coming out the other side",
 			caption: "Looking back over the scramble we've just made, plus the trail from the bottom.  We've come a long way!  Now, to descend...",
+			pin: true,
 			indexFrom: 186,
 			indexTo: 226,
 			result: {
@@ -91,6 +96,7 @@ function(
 		{
 			title: "We begin our descent",
 			caption: "Watch your step.  The descent is step, and your legs are fatigued.",
+			pin: true,
 			indexFrom: 236,
 			indexTo: 276,
 			result: {
@@ -102,8 +108,6 @@ function(
 			}
 		},
 		{
-			title: "Fire road",
-			caption: "The orange section is the fire road, and it is a sight for sore eyes, as you'll just be ambling on autopilot from here on in.  The only bad news is that it is <i>interminable</i>.",
 			indexFrom: 286,
 			indexTo: 316,
 			result: {
@@ -113,8 +117,21 @@ function(
 				y: 38.55382159437545,
 				z: 1030.4801947753876
 			}
+		},
+		{
+			title: "Fire road",
+			caption: "The orange section is the fire road, and it is a sight for sore eyes, as you'll just be ambling on autopilot from here on in.  The only bad news is that it is <i>interminable</i>.",
+			pin: true,
+			indexFrom: 317,
+			indexTo: 347,
+			result: {
+				heading: 0,
+				tilt: 51.84360855846014,
+				x: -78.32631625370952,
+				y: 38.552160846682845,
+				z: 978.7179458839819
+			}
 		}
-		
 	];
 
 	$(document).ready(function() {
@@ -156,8 +173,7 @@ function(
 		// init controller
 		var controller = new ScrollMagic.Controller();
 
-		const TICK_LIMIT = 390;
-		$("section#action").css("height", "1300vh");
+		$("section#action").css("height", (TICK_LIMIT*3.3333333)+"vh");
 		
 		for (var i = 1; i < TICK_LIMIT+1; i++) {
 			$("section#action").append($("<div>").addClass("tick").attr("id", "tick"+i));
@@ -177,17 +193,21 @@ function(
 		
 		ANIMATIONS.forEach((animation, i) => {
 
-			var tick = i===0 ? 17 : animation.indexTo;
-			var caption = $("<div>")
-				.addClass("caption")
-				.css("top", parseInt((tick/TICK_LIMIT)*100)+"%")
-				.append($("<h3>").html(animation.title))
-				.append($("<p>").html(animation.caption))
-				.appendTo($("section#action"));
-
-			new ScrollMagic.Scene({triggerElement: "#tick"+tick, duration: "80%"})
-			.setPin(caption.get(0))
-			.addTo(controller);		
+			if (animation.caption) {
+				var tick = i===0 ? 17 : animation.indexTo;
+				var caption = $("<div>")
+					.addClass("caption")
+					.css("top", parseInt((tick/TICK_LIMIT)*100)+"%")
+					.append($("<h3>").html(animation.title))
+					.append($("<p>").html(animation.caption))
+					.appendTo($("section#action"));
+	
+				if (animation.pin) {
+					new ScrollMagic.Scene({triggerElement: "#tick"+tick, duration: "80%"})
+					.setPin(caption.get(0))
+					.addTo(controller);		
+				}
+			}
 			
 		});
 		
