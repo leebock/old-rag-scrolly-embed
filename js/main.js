@@ -21,7 +21,7 @@ function(
 	var _view;
 	var _lastScrollTop = 0; // used to track whether scroll is forward or reverse
 
-	const TICK_LIMIT = 410;	
+	const TICK_LIMIT = 440;	
 	const ANIMATIONS = [
 		{
 			title: "Old Rag in five segments",
@@ -131,7 +131,31 @@ function(
 				y: 38.552160846682845,
 				z: 978.7179458839819
 			}
+		},
+		{
+			indexFrom: 357,
+			indexTo: 387,
+			result: {
+				heading: 58,
+				tilt: 49.237467649332395,
+				x: -78.33002905644025,
+				y: 38.56333633913855,
+				z: 1004.1249762913212
+			}
+		},
+		{
+			indexFrom: 388,
+			indexTo: 418,
+			result: {
+				heading: 58,
+				tilt: 49.237467649332395,
+				x: -78.30838642557953,
+				y: 38.56799267303784,
+				z: 1004.1249762913212
+			}
 		}
+
+
 	];
 
 	$(document).ready(function() {
