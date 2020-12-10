@@ -87,8 +87,34 @@ function(
 				y: 38.550239796995676,
 				z: 1203.57148942817
 			}
+		},
+		{
+			title: "We begin our descent",
+			caption: "Watch your step.  The descent is step, and your legs are fatigued.",
+			indexFrom: 236,
+			indexTo: 276,
+			result: {
+				heading: -60,
+				tilt: 43.76381264518891,
+				x: -78.31703768981637,
+				y: 38.55052596268636,
+				z: 1242.6945127677172
+			}
+		},
+		{
+			title: "Fire road",
+			caption: "The orange section is the fire road, and it is a sight for sore eyes, as you'll just be ambling on autopilot from here on in.  The only bad news is that it is <i>interminable</i>.",
+			indexFrom: 286,
+			indexTo: 316,
+			result: {
+				heading: -65,
+				tilt: 45.06756744963243,
+				x: -78.32529569520926,
+				y: 38.55382159437545,
+				z: 1030.4801947753876
+			}
 		}
-
+		
 	];
 
 	$(document).ready(function() {
@@ -130,9 +156,8 @@ function(
 		// init controller
 		var controller = new ScrollMagic.Controller();
 
-		const TICK_LIMIT = 330;
-		$("section#action").css("height", "1100vh");
-		
+		const TICK_LIMIT = 390;
+		$("section#action").css("height", "1300vh");
 		
 		for (var i = 1; i < TICK_LIMIT+1; i++) {
 			$("section#action").append($("<div>").addClass("tick").attr("id", "tick"+i));
@@ -156,8 +181,8 @@ function(
 			var caption = $("<div>")
 				.addClass("caption")
 				.css("top", parseInt((tick/TICK_LIMIT)*100)+"%")
-				.append($("<h3>").text(animation.title))
-				.append($("<p>").text(animation.caption))
+				.append($("<h3>").html(animation.title))
+				.append($("<p>").html(animation.caption))
 				.appendTo($("section#action"));
 
 			new ScrollMagic.Scene({triggerElement: "#tick"+tick, duration: "80%"})
