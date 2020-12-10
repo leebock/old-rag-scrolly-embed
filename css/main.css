@@ -90,11 +90,6 @@ section#action {
   position: relative;
   display: flex;
   flex-direction: column;
-  /*
-  #caption-ridge-crossing {
-    top: calc(50% - 32px);
-  }
-  */
 }
 section#action div.tick {
   flex: 1;
@@ -114,18 +109,6 @@ section#action div.caption {
 }
 section#action div.caption h3, section#action div.caption p {
   width: 250px;
-}
-section#action #caption-intro {
-  top: calc(3% - 32px);
-}
-section#action #caption-ascent {
-  top: calc(20% - 32px);
-}
-section#action #caption-scramble {
-  top: calc(64% - 32px);
-}
-section#action #caption-top-view {
-  top: calc(96% - 32px);
 }
 
 /*# sourceMappingURL=main.css.map */

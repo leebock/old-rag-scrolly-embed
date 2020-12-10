@@ -23,9 +23,10 @@ function(
 	
 	const ANIMATIONS = [
 		{
-			title: "opening",
-			indexFrom: -1,
-			indexTo: -1,
+			title: "Old Rag in five segments",
+			caption: "I divide the Old Rag hike mentally into five segments, the first of which is the hike up from the parking area (seen here in gray).  This paved road is plenty steep!  It's also the only part of the hike that you'll see twice.",
+			indexFrom: 1,
+			indexTo: 13,
 			result: {
 				fov: 100,
 				heading: 220,
@@ -36,7 +37,8 @@ function(
 			}
 		},
 		{
-			title: "ascending trail",
+			title: "Trail ascent",
+			caption: "At the top of access road, you'll find the proper trail head.  There, you'll begin the second segment of the hike (see here in yellow).  The trail grows steeper than the access road and often forms switchbacks.",
 			indexFrom: 14,
 			indexTo: 57,
 			result: {
@@ -47,10 +49,11 @@ function(
 				z: 1199.9999999990687
 			}
 		},
-		{
-			title: "scramble across top",
-			indexFrom: 101,
-			indexTo: 170,
+		{			
+			title: "Scramble",
+			caption: "The red segment profiles the scramble across the top.  If you have hiking poles, you're gonna want to put them away.  It's time to use your hands and arms.",
+			indexFrom: 67,
+			indexTo: 136,
 			result: {
 				heading: 187.94556249091443,
 				tilt: 60.09714325569671,
@@ -60,9 +63,10 @@ function(
 			}
 		},
 		{
-			title: "overhead top view",
-			indexFrom: 210,
-			indexTo: 240,
+			title: "View from overhead",
+			caption: "Here's a bird's-eye view of the top scramble.  As you can see, it goes on for a while.",
+			indexFrom: 146,
+			indexTo: 176,
 			result: {
 				heading: 184.48378517653958,
 				tilt: 0,
@@ -70,7 +74,21 @@ function(
 				y: 38.552576248047245,
 				z: 1600
 			}
+		},
+		{
+			title: "Coming out the other side",
+			caption: "Looking back over the scramble we've just made, plus the trail from the bottom.  We've come a long way!  Now, to descend...",
+			indexFrom: 186,
+			indexTo: 226,
+			result: {
+				heading: 73.07929049224033,
+				tilt: 51.19152551202842,
+				x: -78.32069440694434,
+				y: 38.550239796995676,
+				z: 1203.57148942817
+			}
 		}
+
 	];
 
 	$(document).ready(function() {
@@ -112,8 +130,9 @@ function(
 		// init controller
 		var controller = new ScrollMagic.Controller();
 
-		const TICK_LIMIT = 270;
-		$("section#action").css("height", "900vh");
+		const TICK_LIMIT = 330;
+		$("section#action").css("height", "1100vh");
+		
 		
 		for (var i = 1; i < TICK_LIMIT+1; i++) {
 			$("section#action").append($("<div>").addClass("tick").attr("id", "tick"+i));
@@ -131,14 +150,22 @@ function(
 			.on("leave", onLeave);
 		}
 		
-		new ScrollMagic.Scene({triggerElement: "#tick62", duration: "100%"})
-		.setPin("#caption-ascent")
-		.addTo(controller);		
-		
-		new ScrollMagic.Scene({triggerElement: "#tick170", duration: "100%"})
-		.setPin("#caption-scramble")
-		.addTo(controller);		
+		ANIMATIONS.forEach((animation, i) => {
 
+			var tick = i===0 ? 17 : animation.indexTo;
+			var caption = $("<div>")
+				.addClass("caption")
+				.css("top", parseInt((tick/TICK_LIMIT)*100)+"%")
+				.append($("<h3>").text(animation.title))
+				.append($("<p>").text(animation.caption))
+				.appendTo($("section#action"));
+
+			new ScrollMagic.Scene({triggerElement: "#tick"+tick, duration: "80%"})
+			.setPin(caption.get(0))
+			.addTo(controller);		
+			
+		});
+		
 	});
 
 	/***************************************************************************
@@ -150,7 +177,7 @@ function(
 		var index = $("section#action div.tick")
 					.index($(event.target.triggerElement()))+1;
 		var current = findAnimation(index);
-		if (current) {
+		if (current && ANIMATIONS.indexOf(current) > 0) {
 
 			var last = ANIMATIONS[ANIMATIONS.indexOf(current)-1];
 			var span = (current.indexTo - current.indexFrom)+1;
