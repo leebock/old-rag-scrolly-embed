@@ -84,13 +84,28 @@ a, button {
     
 }
 
-div#view {
-  position: fixed;
-  z-index: 100;
-  top: 0px;
-  left: 0px;
+section#cover {
+  position: relative;
   width: 100%;
-  height: 100%;
+  height: 100vh;  
+  background-image: url("../resources/IMG_1777.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+section#intro {
+  padding-top: 10%;
+  padding-bottom: 10%;
+  padding-left: 20%;
+  padding-right: 20%;
+  font-size: 30px;
+}
+
+#view {
+  position: relative;
+  z-index: 100;
+  width: 100%;
+  height: 100vh;
 }
 
 section#action {

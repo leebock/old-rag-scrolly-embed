@@ -197,6 +197,10 @@ function(
 		// init controller
 		var controller = new ScrollMagic.Controller();
 
+		new ScrollMagic.Scene({triggerElement: "#view", triggerHook: 0})
+		.setPin("#view")
+		.addTo(controller);		
+
 		$("section#action").css("height", (TICK_LIMIT*3.3333333)+"vh");
 		
 		for (var i = 1; i < TICK_LIMIT+1; i++) {
