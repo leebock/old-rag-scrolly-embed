@@ -144,6 +144,9 @@ function(
 			}
 		},
 		{
+			title: "And we're back...",
+			caption: "Next stop:  Sperryville General Store for snacks.  And then home by late happy hour.",
+			pin: true,
 			indexFrom: 388,
 			indexTo: 418,
 			result: {
@@ -197,6 +200,11 @@ function(
 
 		// init controller
 		var controller = new ScrollMagic.Controller();
+
+		new ScrollMagic.Scene({triggerElement: "#cover", triggerHook: 0, offset: 100})
+		.setClassToggle(".banner", "active")
+		.addTo(controller);		
+
 
 		new ScrollMagic.Scene({triggerElement: "#view", triggerHook: 0})
 		.setPin("#view")
