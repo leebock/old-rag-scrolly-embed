@@ -161,6 +161,7 @@ function(
 	$(document).ready(function() {
 		
 		window.onbeforeunload = function (){window.scrollTo(0, 0);};
+		$(".banner a:nth-of-type(2)").click(function(){$("html, body").animate({ scrollTop: 0});});
 		
 		$(window).scroll(onWindowScroll);		
 
@@ -222,7 +223,7 @@ function(
 		ANIMATIONS.forEach((animation, i) => {
 
 			if (animation.caption) {
-				var tick = i===0 ? 17 : animation.indexTo;
+				var tick = i===0 ? 12 : animation.indexTo;
 				var caption = $("<div>")
 					.addClass("caption")
 					.css("top", parseInt((tick/TICK_LIMIT)*100)+"%")

@@ -20,6 +20,9 @@ body {
   background-color: #FFF;
   overflow-x: hidden;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* hides adobe analytics white stripe */
@@ -36,7 +39,6 @@ a, button {
   color: white;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   position: fixed;
   width: 100%;
   z-index: 2000;
@@ -60,7 +62,7 @@ a, button {
     max-height: 30px;
   }
 }
-.banner h1#title {
+.banner h3#title {
   flex-grow: 1;
   margin-right: 10px;
   font-size: 22px;
@@ -71,7 +73,7 @@ a, button {
   text-decoration: none;
 }
 @media (max-width: 1023px) {
-  .banner h1#title {
+  .banner h3#title {
     font-size: 16px;
   }
 }
@@ -83,14 +85,54 @@ section#cover {
   background-image: url("../resources/IMG_1777.jpg");
   background-size: cover;
   background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+section#cover h1 {
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  font-size: 40px;
+}
+
+.picture-caption {
+  font-size: 16px;
+  font-style: italic;
 }
 
 section#intro {
-  padding-top: 10%;
-  padding-bottom: 10%;
-  padding-left: 20%;
-  padding-right: 20%;
-  font-size: 30px;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  font-size: 20px;
+  width: 70%;
+  max-width: 1200px;
+}
+section#intro > div:nth-of-type(1) {
+  display: flex;
+  overflow: hidden;
+}
+section#intro > div:nth-of-type(1) p {
+  flex: 50%;
+  padding-right: 20px;
+}
+section#intro > div:nth-of-type(1) div#picture-frame {
+  flex: 50%;
+  display: flex;
+  flex-direction: column;
+}
+section#intro > div:nth-of-type(1) div#picture-frame #picture {
+  height: 320px;
+  background-image: url("../resources/cousins.jpeg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+section#intro > div:nth-of-type(1) div#picture-frame .picture-caption {
+  text-align: center;
+}
+section#intro img {
+  width: 100%;
 }
 
 #view {
