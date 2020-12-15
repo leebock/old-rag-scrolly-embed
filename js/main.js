@@ -145,8 +145,8 @@ function(
 		},
 		{
 			title: "And we're back...",
-			caption: "Next stop:  Sperryville General Store for snacks.  And then home by late happy hour.",
-			pin: true,
+			caption: "Return to your car and reconsider those carrot sticks you thought you were too good for back on top of the mountain.",
+			pin: false,
 			indexFrom: 388,
 			indexTo: 418,
 			result: {
@@ -205,9 +205,15 @@ function(
 		.setClassToggle(".banner", "active")
 		.addTo(controller);		
 
+		new ScrollMagic.Scene({
+			triggerElement: "#view", 
+			triggerHook: 0, 
+			duration: function(){return $("#action").outerHeight();}
+		})
+		.setPin("#view", {pushFollowers: false})
+		.addTo(controller);		
 
-		new ScrollMagic.Scene({triggerElement: "#view", triggerHook: 0})
-		.setPin("#view")
+		new ScrollMagic.Scene({triggerElement: "#conclusion", triggerHook: 1})
 		.addTo(controller);		
 
 		$("section#action").css("height", (TICK_LIMIT*3.3333333)+"vh");

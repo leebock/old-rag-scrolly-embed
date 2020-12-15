@@ -124,12 +124,15 @@ section#cover {
 }
 
 
-section#intro {
+section#intro, section#conclusion, section#credits {
   padding-top: 5%;
   padding-bottom: 5%;
   font-size: 20px;
   width: 70%;
   max-width: 1200px;
+}
+
+section#intro {
   
   & > div:nth-of-type(1) {
     display: flex;
@@ -195,4 +198,11 @@ section#action {
     }
   }
     
+}
+
+section#credits {
+  text-align: center;
+  background: wheat;
+  max-width: none;
+  width: 100%;
 }
