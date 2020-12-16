@@ -95,7 +95,7 @@ function(
 		},
 		{
 			title: "We begin our descent",
-			caption: "Watch your step.  The descent is step, and your legs are fatigued.",
+			caption: "Watch your step.  The way down is steep, and your legs are fatigued.",
 			pin: true,
 			indexFrom: 236,
 			indexTo: 276,
