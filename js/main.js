@@ -22,25 +22,27 @@ function(
 	var _lastScrollTop = 0; // used to track whether scroll is forward or reverse
 
 	const TICK_LIMIT = 440;	
+	const URL_GPS = "https://services.arcgis.com/nzS0F0zdNLvs7nc8/arcgis/rest/services/old_rg_sectionz/FeatureServer/0";
+	const URL_JSON_WAYPOINTS = "resources/waypoints.json";
 	var ANIMATIONS;
 	
 	$(document).ready(function() {
 	
-		$.getJSON("resources/waypoints.json", function(data) {ANIMATIONS=data;finish();});
+		$.getJSON(URL_JSON_WAYPOINTS, function(data) {ANIMATIONS = data; finish();});
 		
 		function finish()
 		{
+
+			window.reportCamera = reportCamera; // export utility function for console use
 			window.onbeforeunload = function (){window.scrollTo(0, 0);};
-			$(".banner a:nth-of-type(2)").click(function(){$("html, body").animate({ scrollTop: 0});});
-			
+			$(".banner a:nth-of-type(2)").click(
+				function(){$("html, body").animate({ scrollTop: 0});}
+			);			
 			$(window).scroll(onWindowScroll);		
 	
 			var map = new Map({basemap: "satellite", ground: "world-elevation"});
 			
-			var featureLayer = new FeatureLayer({
-			  url:
-			    "https://services.arcgis.com/nzS0F0zdNLvs7nc8/arcgis/rest/services/old_rg_sectionz/FeatureServer/0"
-			});
+			var featureLayer = new FeatureLayer({url: URL_GPS});
 			map.add(featureLayer);		
 	  
 	        _view = new SceneView({
@@ -180,10 +182,6 @@ function(
 	}
 
 	/***************************************************************************
-	**************************** EVENTS (other) ********************************
-	***************************************************************************/
-
-	/***************************************************************************
 	******************************** FUNCTIONS *********************************
 	***************************************************************************/
 
@@ -196,7 +194,7 @@ function(
 			}
 		).shift();
 	}
-	/*
+
 	function reportCamera()
 	{
 		console.log("fov", _view.camera.fov);
@@ -206,5 +204,5 @@ function(
 		console.log("y", _view.camera.position.latitude);
 		console.log("z", _view.camera.position.z);
 	}
-	*/
+
 });
