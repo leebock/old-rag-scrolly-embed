@@ -22,237 +22,107 @@ function(
 	var _lastScrollTop = 0; // used to track whether scroll is forward or reverse
 
 	const TICK_LIMIT = 440;	
-	const ANIMATIONS = [
-		{
-			title: "Old Rag in five segments",
-			caption: "I divide the Old Rag hike mentally into five segments, the first of which is the hike up from the parking area (seen here in gray).  This paved road is plenty steep!  It's also the only part of the hike that you'll see twice.",
-			indexFrom: 1,
-			indexTo: 13,
-			result: {
-				fov: 100,
-				heading: 220,
-				tilt: 65,
-				x: -78.29,
-                y: 38.58,
-                z: 1200 // meters
-			}
-		},
-		{
-			title: "Trail ascent",
-			caption: "At the top of access road, you'll find the proper trail head.  There, you'll begin the second segment of the hike (see here in yellow).  The trail grows steeper than the access road and often forms switchbacks.",
-			pin: true,
-			indexFrom: 14,
-			indexTo: 57,
-			result: {
-				heading: 209.15734359100423,
-				tilt: 65.00000697438114,
-				x: -78.2943371074331,
-				y: 38.57566293895012,
-				z: 1199.9999999990687
-			}
-		},
-		{			
-			title: "Scramble",
-			caption: "The red segment profiles the scramble across the top.  If you have hiking poles, you're gonna want to put them away.  It's time to use your hands and arms.",
-			pin: true,
-			indexFrom: 67,
-			indexTo: 136,
-			result: {
-				heading: 187.94556249091443,
-				tilt: 60.09714325569671,
-				x: -78.3072192632819,
-				y: 38.558066453654284,
-				z: 1240.890418649651					
-			}
-		},
-		{
-			title: "View from overhead",
-			caption: "Here's a bird's-eye view of the top scramble.  As you can see, it goes on for a while.",
-			pin: true,
-			indexFrom: 146,
-			indexTo: 176,
-			result: {
-				heading: 184.48378517653958,
-				tilt: 0,
-				x: -78.31142265920268,
-				y: 38.552576248047245,
-				z: 1600
-			}
-		},
-		{
-			title: "Coming out the other side",
-			caption: "Looking back over the scramble we've just made, plus the trail from the bottom.  We've come a long way!  Now, to descend...",
-			pin: true,
-			indexFrom: 186,
-			indexTo: 226,
-			result: {
-				heading: 73.07929049224033,
-				tilt: 51.19152551202842,
-				x: -78.32069440694434,
-				y: 38.550239796995676,
-				z: 1203.57148942817
-			}
-		},
-		{
-			title: "We begin our descent",
-			caption: "Watch your step.  The way down is steep, and your legs are fatigued.",
-			pin: true,
-			indexFrom: 236,
-			indexTo: 276,
-			result: {
-				heading: -60,
-				tilt: 43.76381264518891,
-				x: -78.31703768981637,
-				y: 38.55052596268636,
-				z: 1242.6945127677172
-			}
-		},
-		{
-			indexFrom: 286,
-			indexTo: 316,
-			result: {
-				heading: -65,
-				tilt: 45.06756744963243,
-				x: -78.32529569520926,
-				y: 38.55382159437545,
-				z: 1030.4801947753876
-			}
-		},
-		{
-			title: "Fire road",
-			caption: "The orange section is the fire road, and it is a sight for sore eyes, as you'll just be ambling on autopilot from here on in.  The only bad news is that it is <i>interminable</i>.",
-			pin: true,
-			indexFrom: 317,
-			indexTo: 347,
-			result: {
-				heading: 0,
-				tilt: 51.84360855846014,
-				x: -78.32631625370952,
-				y: 38.552160846682845,
-				z: 978.7179458839819
-			}
-		},
-		{
-			indexFrom: 357,
-			indexTo: 387,
-			result: {
-				heading: 58,
-				tilt: 49.237467649332395,
-				x: -78.33002905644025,
-				y: 38.56333633913855,
-				z: 1004.1249762913212
-			}
-		},
-		{
-			title: "And we're back...",
-			caption: "Return to your car and reconsider those carrot sticks you thought you were too good for back on top of the mountain.",
-			pin: false,
-			indexFrom: 388,
-			indexTo: 418,
-			result: {
-				heading: 58,
-				tilt: 49.237467649332395,
-				x: -78.30838642557953,
-				y: 38.56799267303784,
-				z: 1004.1249762913212
-			}
-		}
-
-
-	];
-
-	$(document).ready(function() {
-		
-		window.onbeforeunload = function (){window.scrollTo(0, 0);};
-		$(".banner a:nth-of-type(2)").click(function(){$("html, body").animate({ scrollTop: 0});});
-		
-		$(window).scroll(onWindowScroll);		
-
-		var map = new Map({basemap: "satellite", ground: "world-elevation"});
-		
-		var featureLayer = new FeatureLayer({
-		  url:
-		    "https://services.arcgis.com/nzS0F0zdNLvs7nc8/arcgis/rest/services/old_rg_sectionz/FeatureServer/0"
-		});
-		map.add(featureLayer);		
-  
-        _view = new SceneView({
-          container: "view",
-          map: map,
-          camera: {
-            position: {
-              x: ANIMATIONS[0].result.x,
-              y: ANIMATIONS[0].result.y,
-              z: ANIMATIONS[0].result.z
-            },
-            tilt: ANIMATIONS[0].result.tilt,
-			heading: ANIMATIONS[0].result.heading,
-			fov: ANIMATIONS[0].result.fov
-          }
-        });
-
-		_view.ui.empty("top-left");
-		_view.navigation.mouseWheelZoomEnabled = false;
-		_view.navigation.browserTouchPanEnabled = false;
-		_view.on("key-down", function(event){event.stopPropagation();});
-
-		window.view = _view;
-
-		// init controller
-		var controller = new ScrollMagic.Controller();
-
-		new ScrollMagic.Scene({triggerElement: "#cover", triggerHook: 0, offset: 100})
-		.setClassToggle(".banner", "active")
-		.addTo(controller);		
-
-		new ScrollMagic.Scene({
-			triggerElement: "#view", 
-			triggerHook: 0, 
-			duration: function(){return $("#action").outerHeight();}
-		})
-		.setPin("#view", {pushFollowers: false})
-		.addTo(controller);		
-
-		new ScrollMagic.Scene({triggerElement: "#conclusion", triggerHook: 1})
-		.addTo(controller);		
-
-		$("section#action").css("height", (TICK_LIMIT*3.3333333)+"vh");
-		
-		for (var i = 1; i < TICK_LIMIT+1; i++) {
-			$("section#action").append($("<div>").addClass("tick").attr("id", "tick"+i));
-			new ScrollMagic.Scene(
-				{
-					triggerElement: "#tick"+i, 
-					triggerHook: 0.5, 
-					offset: 0,
-					duration: "3%"
-				}
-			)
-			.addTo(controller)
-			/*.addIndicators()*/
-			.on("enter", onEnter)
-			.on("leave", onLeave);
-		}
-		
-		ANIMATIONS.forEach((animation, i) => {
-
-			if (animation.caption) {
-				var tick = i===0 ? 12 : animation.indexTo;
-				var caption = $("<div>")
-					.addClass("caption")
-					.css("top", parseInt((tick/TICK_LIMIT)*100)+"%")
-					.append($("<h3>").html(animation.title))
-					.append($("<p>").html(animation.caption))
-					.appendTo($("section#action"));
+	var ANIMATIONS;
 	
-				if (animation.pin) {
-					new ScrollMagic.Scene({triggerElement: "#tick"+tick, duration: "80%"})
-					.setPin(caption.get(0))
-					.addTo(controller);		
-				}
+	$(document).ready(function() {
+	
+		$.getJSON("resources/waypoints.json", function(data) {ANIMATIONS=data;finish();});
+		
+		function finish()
+		{
+			window.onbeforeunload = function (){window.scrollTo(0, 0);};
+			$(".banner a:nth-of-type(2)").click(function(){$("html, body").animate({ scrollTop: 0});});
+			
+			$(window).scroll(onWindowScroll);		
+	
+			var map = new Map({basemap: "satellite", ground: "world-elevation"});
+			
+			var featureLayer = new FeatureLayer({
+			  url:
+			    "https://services.arcgis.com/nzS0F0zdNLvs7nc8/arcgis/rest/services/old_rg_sectionz/FeatureServer/0"
+			});
+			map.add(featureLayer);		
+	  
+	        _view = new SceneView({
+	          container: "view",
+	          map: map,
+	          camera: {
+	            position: {
+	              x: ANIMATIONS[0].result.x,
+	              y: ANIMATIONS[0].result.y,
+	              z: ANIMATIONS[0].result.z
+	            },
+	            tilt: ANIMATIONS[0].result.tilt,
+				heading: ANIMATIONS[0].result.heading,
+				fov: ANIMATIONS[0].result.fov
+	          }
+	        });
+	
+			_view.ui.empty("top-left");
+			_view.navigation.mouseWheelZoomEnabled = false;
+			_view.navigation.browserTouchPanEnabled = false;
+			_view.on("key-down", function(event){event.stopPropagation();});
+	
+			window.view = _view;
+	
+			// init controller
+			var controller = new ScrollMagic.Controller();
+	
+			new ScrollMagic.Scene({triggerElement: "#cover", triggerHook: 0, offset: 100})
+			.setClassToggle(".banner", "active")
+			.addTo(controller);		
+	
+			new ScrollMagic.Scene({
+				triggerElement: "#view", 
+				triggerHook: 0, 
+				duration: function(){return $("#action").outerHeight();}
+			})
+			.setPin("#view", {pushFollowers: false})
+			.addTo(controller);		
+	
+			new ScrollMagic.Scene({triggerElement: "#conclusion", triggerHook: 1})
+			.addTo(controller);		
+	
+			$("section#action").css("height", (TICK_LIMIT*3.3333333)+"vh");
+			
+			for (var i = 1; i < TICK_LIMIT+1; i++) {
+				$("section#action").append($("<div>").addClass("tick").attr("id", "tick"+i));
+				new ScrollMagic.Scene(
+					{
+						triggerElement: "#tick"+i, 
+						triggerHook: 0.5, 
+						offset: 0,
+						duration: "3%"
+					}
+				)
+				.addTo(controller)
+				/*.addIndicators()*/
+				.on("enter", onEnter)
+				.on("leave", onLeave);
 			}
 			
-		});
+			ANIMATIONS.forEach((animation, i) => {
+	
+				if (animation.caption) {
+					var tick = i===0 ? 12 : animation.indexTo;
+					var caption = $("<div>")
+						.addClass("caption")
+						.css("top", parseInt((tick/TICK_LIMIT)*100)+"%")
+						.append($("<h3>").html(animation.title))
+						.append($("<p>").html(animation.caption))
+						.appendTo($("section#action"));
+		
+					if (animation.pin) {
+						new ScrollMagic.Scene({triggerElement: "#tick"+tick, duration: "80%"})
+						.setPin(caption.get(0))
+						.addTo(controller);		
+					}
+				}
+				
+			});
+			
+		}
+	
 		
 	});
 
