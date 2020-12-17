@@ -1,5 +1,5 @@
 # scroll-driven-3d
 
-Application files for scroll driven 3D proof-of-concept.
+Sample application demonstrating scroll as a means of navigating an ArcGIS 3D web scene.
 
-https://storymaps.esri.com/lee/scene-scroll-viewer/
+https://leebock.github.io/scroll-driven-3d/
