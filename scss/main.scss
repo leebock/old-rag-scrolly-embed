@@ -153,6 +153,9 @@ section#intro {
         text-align: center;
       }
     }
+    @media (max-width: 800px) {
+      flex-direction: column;
+    }
   }
   img {
     width: 100%;
@@ -199,7 +202,7 @@ section#action {
 
 section#credits {
   text-align: center;
-  background: wheat;
+  background: lightgray;
   max-width: none;
   width: 100%;
 }
