@@ -244,16 +244,17 @@ section#conclusion > div:nth-of-type(1) > div:nth-of-type(2) > p {
   }
 }
 
-section#credits {
+section#footer {
   font-size: 14px;
   justify-content: flex-start;
   align-items: center;
-  background: lightgray;
+  background: #404040;
+  color: white;
   max-width: none;
   width: 100%;
   padding: 20px;
 }
-section#credits h4 {
+section#footer h4 {
   font-size: 16px;
 }
 
