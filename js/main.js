@@ -112,6 +112,8 @@ function(
 						.css("top", parseInt((tick/TICK_LIMIT)*100)+"%")
 						.append($("<h3>").html(animation.title))
 						.append($("<p>").html(animation.caption))
+						.append(animation.photo ? $("<img>").attr("src", "resources/"+animation.photo) : null)
+						.append(animation.photo ? $("<div>").html(animation["photo-credit"]).addClass("picture-caption") : null)
 						.appendTo($("section#action"));
 		
 					if (animation.pin) {

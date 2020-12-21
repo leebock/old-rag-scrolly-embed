@@ -202,8 +202,11 @@ section#action div.caption {
   color: white;
   right: 30px;
 }
-section#action div.caption h3, section#action div.caption p {
-  width: 250px;
+section#action div.caption h3, section#action div.caption p, section#action div.caption img, section#action div.caption .picture-caption {
+  width: 275px;
+}
+section#action div.caption .picture-caption {
+  font-size: 14px;
 }
 
 section#conclusion > div:nth-of-type(1) {

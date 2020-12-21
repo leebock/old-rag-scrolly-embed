@@ -225,11 +225,13 @@ section#action {
     padding: 20px;
     color: white;
     right: 30px;
-    h3, p {
-      width: 250px;
+    h3, p, img, .picture-caption {
+      width: 275px;
     }
-  }
-    
+    .picture-caption {
+      font-size: 14px;
+    }
+  }    
 }
 
 section#conclusion {

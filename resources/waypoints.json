@@ -17,6 +17,8 @@
     "title": "Trail ascent",
     "caption": "At the top of access road, you'll find the proper trail head.  There, you'll begin the second segment of the hike (see here in yellow).  The trail grows steeper than the access road and often forms switchbacks.",
     "pin": true,
+    "photo": "switchbacks.jpg",
+    "photo-credit": "Switchbacks on the ascent (Photo: Judy C via TripAdvisor)",
     "indexFrom": 14,
     "indexTo": 57,
     "result": {
@@ -30,6 +32,8 @@
   {
     "title": "Scramble",
     "caption": "The red segment profiles the scramble across the top.  If you have hiking poles, you're gonna want to put them away.  It's time to use your hands and arms.",
+    "photo": "scramble.jpg",
+    "photo-credit": "Seriously, it's quite an arm workout (Photo: via TripAdvisor)",
     "pin": true,
     "indexFrom": 67,
     "indexTo": 136,
@@ -43,7 +47,7 @@
   },
   {
     "title": "View from overhead",
-    "caption": "Here's a bird's-eye view of the top scramble.  As you can see, it goes on for a while.",
+    "caption": "Here's a bird's-eye view of the top scramble.  As you can see, it's a good chunk of the hike (about 2 miles).",
     "pin": true,
     "indexFrom": 146,
     "indexTo": 176,
@@ -57,7 +61,9 @@
   },
   {
     "title": "Coming out the other side",
-    "caption": "Looking back over the scramble we've just made, plus the trail from the bottom.  We've come a long way!  Now, to descend...",
+    "caption": "Looking back over the scramble we've just made, plus the trail from the bottom.  We've come a long way (about 5 miles from the parking lot)!  Now, to descend...",
+    "photo": "caving.jpg",
+    "photo-credit": "(Photo: via TripAdvisor)",
     "pin": true,
     "indexFrom": 186,
     "indexTo": 226,
@@ -96,8 +102,10 @@
   },
   {
     "title": "Fire road",
-    "caption": "The orange section is the fire road, and it is a sight for sore eyes, as you'll just be ambling on autopilot from here on in.  The only bad news is that it is <i>interminable</i>.",
+    "caption": "The orange section is the fire road, and it is a sight for sore eyes, as you'll just be ambling on autopilot from here on in.  The only bad news is that this 3 mile section feels <i>interminable</i>.",
     "pin": true,
+    "photo": "the-fire-road.jpg",
+    "photo-credit": "The fire road is nice and easy, but loooooooong. (Photo: paxa via TripAdvisor)",
     "indexFrom": 317,
     "indexTo": 347,
     "result": {
