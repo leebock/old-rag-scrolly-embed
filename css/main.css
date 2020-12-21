@@ -146,6 +146,34 @@ section#intro > div:nth-of-type(1) > div:nth-of-type(1) span.picture-caption {
     padding-right: 0px;
   }
 }
+section#intro > div:nth-of-type(2) {
+  display: flex;
+  overflow: hidden;
+}
+section#intro > div:nth-of-type(2) p {
+  flex: 50%;
+  padding-right: 20px;
+}
+section#intro > div:nth-of-type(2) > div:nth-of-type(1) {
+  flex: 50%;
+  display: flex;
+  flex-direction: column;
+}
+section#intro > div:nth-of-type(2) > div:nth-of-type(1) div.picture {
+  background-image: url("../resources/narrow-passage.jpg");
+  background-size: cover;
+}
+section#intro > div:nth-of-type(2) > div:nth-of-type(1) span.picture-caption {
+  text-align: center;
+}
+@media (max-width: 800px) {
+  section#intro > div:nth-of-type(2) {
+    flex-direction: column;
+  }
+  section#intro > div:nth-of-type(2) p {
+    padding-right: 0px;
+  }
+}
 section#intro img {
   width: 100%;
 }
