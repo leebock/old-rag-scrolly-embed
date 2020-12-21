@@ -98,16 +98,14 @@ function(
 					}
 				)
 				.addTo(controller)
-				/*.addIndicators()*/
 				.on("enter", onEnter)
 				.on("leave", onLeave);
 			}
 			
 			ANIMATIONS.forEach((animation, i) => {
-	
 				if (animation.caption) {
 					var tick = i===0 ? 12 : animation.indexTo;
-					var caption = $("<div>")
+					$("<div>")
 						.addClass("caption")
 						.css("top", parseInt((tick/TICK_LIMIT)*100)+"%")
 						.append($("<h3>").html(animation.title))
@@ -115,19 +113,10 @@ function(
 						.append(animation.photo ? $("<img>").attr("src", "resources/"+animation.photo) : null)
 						.append(animation.photo ? $("<div>").html(animation["photo-credit"]).addClass("picture-caption") : null)
 						.appendTo($("section#action"));
-		
-					if (animation.pin) {
-						new ScrollMagic.Scene({triggerElement: "#tick"+tick, duration: "80%"})
-						.setPin(caption.get(0))
-						.addTo(controller);		
-					}
-				}
-				
-			});
-			
+				}				
+			});		
 		}
 	
-		
 	});
 
 	/***************************************************************************
