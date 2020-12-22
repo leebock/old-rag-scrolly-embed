@@ -133,23 +133,25 @@ function(
 			var span = (current.indexTo - current.indexFrom)+1;
 			var step = (index - current.indexFrom)+1;
 
-			_view
-			  .goTo({
-				tilt: 	last.result.tilt + 
-						((current.result.tilt - last.result.tilt) / span)*step,
-				heading: last.result.heading + 
-						((current.result.heading - last.result.heading) / span)*step,
-				position: {
-					x: 	last.result.x + ((current.result.x - last.result.x) / span)*step, 
-					y: 	last.result.y + ((current.result.y - last.result.y) / span)*step, 
-					z: 	last.result.z + ((current.result.z - last.result.z) / span)*step
+			_view.goTo(
+				{
+					tilt: 	last.result.tilt + 
+							((current.result.tilt - last.result.tilt) / span)*step,
+					heading: last.result.heading + 
+							((current.result.heading - last.result.heading) / span)*step,
+					position: {
+						x: last.result.x + ((current.result.x - last.result.x) / span)*step, 
+						y: last.result.y + ((current.result.y - last.result.y) / span)*step, 
+						z: last.result.z + ((current.result.z - last.result.z) / span)*step
+					},
 				},
-			  })
-			  .catch(function (error) {
+				{animate: true, duration: 250, speedFactor: 0.25, easing: "out-expo"}
+			)
+			.catch(function (error) {
 				if (error.name !== "AbortError") {
-				  console.error(error);
+					console.error(error);
 				}
-			  });
+			});
 			
 		} else {
 			// nothing
