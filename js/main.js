@@ -98,8 +98,7 @@ function(
 					}
 				)
 				.addTo(controller)
-				.on("enter", onEnter)
-				.on("leave", onLeave);
+				.on("enter", onEnter);
 			}
 			
 			ANIMATIONS.forEach((animation, i) => {
@@ -156,10 +155,6 @@ function(
 			// nothing
 		}
 
-	}
-			
-	function onLeave(event)
-	{
 	}
 
 	function onWindowScroll(event){
