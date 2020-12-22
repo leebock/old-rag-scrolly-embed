@@ -33,7 +33,6 @@ function(
 		function finish()
 		{
 
-			window.reportCamera = reportCamera; // export utility function for console use
 			window.onbeforeunload = function (){window.scrollTo(0, 0);};
 			$(".banner a:nth-of-type(2)").click(
 				function(){$("html, body").animate({ scrollTop: 0});}
@@ -181,16 +180,6 @@ function(
 				return index >= animation.indexFrom && index <= animation.indexTo;
 			}
 		).shift();
-	}
-
-	function reportCamera()
-	{
-		console.log("fov", _view.camera.fov);
-		console.log("heading", _view.camera.heading);
-		console.log("tilt", _view.camera.tilt);
-		console.log("x", _view.camera.position.longitude);
-		console.log("y", _view.camera.position.latitude);
-		console.log("z", _view.camera.position.z);
 	}
 
 });
