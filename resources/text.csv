@@ -1,0 +1,14 @@
+Text,Type
+Turkey with Honor!,header
+"""Turkey with honor!""  This is the Bock family Thanksgiving battle cry (not shared with equal enthusiasm by all).  It suggests that holiday indulgences are most satisfying when <i>earned</i>...typically through some purifying act of over-the-top, dad-designed physical exertion.  Most years, for us, this regimen involves climbing Old Rag mountain.",text-content
+Old Rag,header
+"Situated in the Shenandoah mountains, about 1 & 1/2 hours from DC, Old Rag offers a 9 mile loop of strenuous hiking.  If you're seeking atonement for seconds on creamy mash potatoes, this is the outing for you.  The adventure also provides plenty of opportunities for unit cohesion (i.e. togetherness).",text-content
+#ButNotThisYear,header
+"Mind you, the hike can be quite crowded.  In normal years the throngs don't bother me.  Chalk it up to seasonal merriment, but I'm happy to be in the company of other hikers (plus, it scares off the bears).  Here's the thing though: There are at least two places on the top of Old Rag where rock formations force the path through a narrow passageway.  As all hikers must pass through these bottlenecks, it can often mean waiting in line. ",text-content
+"The notion of standing around on a crowded mountain top, trying to maintain six feet of distance in the COVID era was just too much for me this year.  So I found other ways to torture my family.  But as an act of ""I'll be back"" defiance, I have created this digital tour!",text-content
+"Next year, no one is safe (in a good way)!",text-content
+Well done!,header
+"If you've timed things right, you'll be back to the city by happy hour.  But hey, why not frontload some rewards.  You've earned it!",text-content
+"The <a href=""https://www.cornerstoresperryville.com/"" target=""_blank"">Sperryville Corner Store & General Provisioners</a> is an old fashioned General Store that offers everything from homemade candies to cuts of steak.  And it's on your way back to the main road.  There's a craft beer and wine selection (for your appointed happy hour), as well as a Black Lab named Baker who will pick out a bottle for you.",text-content
+About this sample,header
+"This sample application uses the <a href=""https://developers.arcgis.com/javascript/"" target=""_blank"">ArcGIS 4.x API</a> together with the <a href=""https://scrollmagic.io/"" target=""_blank"">ScrollMagic</a> library to demonstrate scroll interaction as a way of navigating 3D Web Scenes.",text-content

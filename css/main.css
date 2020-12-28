@@ -100,6 +100,11 @@ section#cover h2 {
   font-weight: normal;
 }
 
+div.picture-frame {
+  display: flex;
+  flex-direction: column;
+}
+
 div.picture {
   height: 320px;
   background-size: contain;
@@ -110,6 +115,7 @@ div.picture {
 .picture-caption {
   font-size: 16px;
   font-style: italic;
+  text-align: center;
 }
 
 section#intro, section#conclusion, section#credits {
@@ -128,16 +134,8 @@ section#intro > div:nth-of-type(1) p {
   flex: 50%;
   padding-right: 20px;
 }
-section#intro > div:nth-of-type(1) > div:nth-of-type(1) {
+section#intro > div:nth-of-type(1) > div.picture-frame {
   flex: 50%;
-  display: flex;
-  flex-direction: column;
-}
-section#intro > div:nth-of-type(1) > div:nth-of-type(1) div.picture {
-  background-image: url("../resources/cousins.jpeg");
-}
-section#intro > div:nth-of-type(1) > div:nth-of-type(1) span.picture-caption {
-  text-align: center;
 }
 @media (max-width: 800px) {
   section#intro > div:nth-of-type(1) {
@@ -155,17 +153,11 @@ section#intro > div:nth-of-type(2) p {
   flex: 50%;
   padding-right: 20px;
 }
-section#intro > div:nth-of-type(2) > div:nth-of-type(1) {
+section#intro > div:nth-of-type(2) > div.picture-frame {
   flex: 50%;
-  display: flex;
-  flex-direction: column;
 }
-section#intro > div:nth-of-type(2) > div:nth-of-type(1) div.picture {
-  background-image: url("../resources/narrow-passage.jpg");
+section#intro > div:nth-of-type(2) > div.picture-frame div.picture {
   background-size: cover;
-}
-section#intro > div:nth-of-type(2) > div:nth-of-type(1) span.picture-caption {
-  text-align: center;
 }
 @media (max-width: 800px) {
   section#intro > div:nth-of-type(2) {
@@ -208,23 +200,18 @@ section#action div.caption h3, section#action div.caption p, section#action div.
 }
 section#action div.caption .picture-caption {
   font-size: 14px;
+  text-align: left;
 }
 
 section#conclusion > div:nth-of-type(1) {
   display: flex;
   overflow: hidden;
 }
-section#conclusion > div:nth-of-type(1) > div:nth-of-type(1) {
+section#conclusion > div:nth-of-type(1) > div.picture-frame {
   flex: 50%;
-  display: flex;
-  flex-direction: column;
 }
-section#conclusion > div:nth-of-type(1) > div:nth-of-type(1) div.picture {
-  background-image: url("../resources/general-store.jpg");
+section#conclusion > div:nth-of-type(1) > div.picture-frame div.picture {
   background-size: cover;
-}
-section#conclusion > div:nth-of-type(1) > div:nth-of-type(1) span.picture-caption {
-  text-align: center;
 }
 section#conclusion > div:nth-of-type(1) > div:nth-of-type(2) {
   flex: 50%;
