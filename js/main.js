@@ -81,7 +81,7 @@ function(
 				function(idx, value) {
 					$("<div>")
 						.addClass("picture")
-						.css("background-image", "url('"+PICTURES[idx].URL+"'")
+						.css("background-image", "url('resources/"+PICTURES[idx].URL+"'")
 						.appendTo($(value));
 					$("<span>")
 						.addClass("picture-caption")
