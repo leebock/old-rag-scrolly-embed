@@ -146,24 +146,40 @@ section#intro > div:nth-of-type(1) > div.picture-frame {
   }
 }
 section#intro > div:nth-of-type(2) {
+  width: 100%;
+  padding-top: 60%;
+  position: relative;
+}
+section#intro > div:nth-of-type(2) > div.picture-frame {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+}
+section#intro > div:nth-of-type(2) > div.picture-frame > div.picture {
+  width: 100%;
+  height: 100%;
+}
+section#intro > div:nth-of-type(3) {
   display: flex;
   overflow: hidden;
 }
-section#intro > div:nth-of-type(2) p {
+section#intro > div:nth-of-type(3) p {
   flex: 50%;
   padding-right: 20px;
 }
-section#intro > div:nth-of-type(2) > div.picture-frame {
+section#intro > div:nth-of-type(3) > div.picture-frame {
   flex: 50%;
 }
-section#intro > div:nth-of-type(2) > div.picture-frame div.picture {
+section#intro > div:nth-of-type(3) > div.picture-frame div.picture {
   background-size: cover;
 }
 @media (max-width: 800px) {
-  section#intro > div:nth-of-type(2) {
+  section#intro > div:nth-of-type(3) {
     flex-direction: column;
   }
-  section#intro > div:nth-of-type(2) p {
+  section#intro > div:nth-of-type(3) p {
     padding-right: 0px;
   }
 }
