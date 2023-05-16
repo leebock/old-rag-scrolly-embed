@@ -24,38 +24,15 @@ function(
 	const TICK_LIMIT = 440;
 	const URL_GPS = "https://services.arcgis.com/nzS0F0zdNLvs7nc8/arcgis/rest/services/old_rg_sectionz/FeatureServer/0";
 	const URL_JSON_WAYPOINTS = "resources/waypoints.json";
-	const URL_PICTURES = "resources/pictures.csv";
 	
 	var ANIMATIONS;
-	var PICTURES;
 	
 	$(document).ready(function() {
 	
 		$.getJSON(URL_JSON_WAYPOINTS, function(data) {ANIMATIONS = data; finish();});
-		Papa.parse(URL_PICTURES, {
-			header: true,
-			download: true,
-			complete: function(results) {PICTURES = results.data; finish();}
-		});		
 		
 		function finish()
 		{
-			if (!ANIMATIONS || !PICTURES) {
-				return;
-			}
-			$.each(
-				$("div.picture-frame"),
-				function(idx, value) {
-					$("<div>")
-						.addClass("picture")
-						.css("background-image", "url('resources/"+PICTURES[idx].URL+"'")
-						.appendTo($(value));
-					$("<span>")
-						.addClass("picture-caption")
-						.html(PICTURES[idx].Caption)
-						.appendTo($(value));
-				}
-			);
 
 			window.onbeforeunload = function (){window.scrollTo(0, 0);};
 			$(".banner a:nth-of-type(2)").click(
