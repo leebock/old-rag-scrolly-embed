@@ -38,16 +38,12 @@ a, button {
 
   background-color: #404040;
   color: white;
-  display: none;
+  display: flex;
   align-items: center;
   position: fixed;
   width: 100%;
   z-index: 2000;
   
-  &.active {
-    display: flex;
-  }
-
   @media (max-width: 500px) {
     padding: 5px;
   }

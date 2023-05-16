@@ -2,17 +2,11 @@ require(
 [
 	"esri/Map", 
 	"esri/views/SceneView",
-	"esri/geometry/Extent",
-	"esri/geometry/SpatialReference",
-	"esri/geometry/Point",
 	"esri/layers/FeatureLayer"
 ],	 
 function(
 	Map, 
 	SceneView,
-	Extent,
-	SpatialReference,
-	Point,
 	FeatureLayer
 	) {
 
@@ -69,20 +63,13 @@ function(
 	
 			// init controller
 			var controller = new ScrollMagic.Controller();
-	
-			new ScrollMagic.Scene({triggerElement: "#cover", triggerHook: 0, offset: 100})
-			.setClassToggle(".banner", "active")
-			.addTo(controller);		
-	
+
 			new ScrollMagic.Scene({
 				triggerElement: "#view", 
 				triggerHook: 0, 
 				duration: function(){return $("#action").outerHeight();}
 			})
 			.setPin("#view", {pushFollowers: false})
-			.addTo(controller);		
-	
-			new ScrollMagic.Scene({triggerElement: "#conclusion", triggerHook: 1})
 			.addTo(controller);		
 	
 			$("section#action").css("height", (TICK_LIMIT*3.3333333)+"vh");
