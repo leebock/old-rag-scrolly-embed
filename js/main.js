@@ -24,38 +24,14 @@ function(
 	const TICK_LIMIT = 440;
 	const URL_GPS = "https://services.arcgis.com/nzS0F0zdNLvs7nc8/arcgis/rest/services/old_rg_sectionz/FeatureServer/0";
 	const URL_JSON_WAYPOINTS = "resources/waypoints.json";
-	const URL_TEXT = "resources/text.csv";
 	const URL_PICTURES = "resources/pictures.csv";
 	
 	var ANIMATIONS;
-	var HEADERS;
-	var TEXT;
 	var PICTURES;
 	
 	$(document).ready(function() {
 	
 		$.getJSON(URL_JSON_WAYPOINTS, function(data) {ANIMATIONS = data; finish();});
-		Papa.parse(URL_TEXT, {
-			header: true,
-			download: true,
-			complete: function(results) {
-				HEADERS = $.map(
-					$.grep(
-						results.data, 
-						function(value){return value.Type === "header";}
-					), 
-					function(value){return value.Text;}
-				);
-				TEXT = $.map(
-					$.grep(
-						results.data, 
-						function(value){return value.Type === "text-content";}
-					), 
-					function(value){return value.Text;}
-				);
-				finish();
-			}
-		});				
 		Papa.parse(URL_PICTURES, {
 			header: true,
 			download: true,
@@ -64,18 +40,9 @@ function(
 		
 		function finish()
 		{
-			if (!ANIMATIONS || !TEXT || !PICTURES) {
+			if (!ANIMATIONS || !PICTURES) {
 				return;
 			}
-
-			$.each(
-				$("section#intro h3, section#conclusion h3, section#footer h4"),
-				function(idx, value){$(value).html(HEADERS[idx]);}
-			);
-			$.each(
-				$("p.text-content"), 
-				function(idx, value){$(value).html(TEXT[idx]);}
-			);
 			$.each(
 				$("div.picture-frame"),
 				function(idx, value) {
