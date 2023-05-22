@@ -29,9 +29,6 @@ function(
 		{
 
 			window.onbeforeunload = function (){window.scrollTo(0, 0);};
-			$(".banner a:nth-of-type(2)").click(
-				function(){$("html, body").animate({ scrollTop: 0});}
-			);			
 			$(window).scroll(onWindowScroll);		
 	
 			var map = new Map({basemap: "satellite", ground: "world-elevation"});
